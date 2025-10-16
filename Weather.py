@@ -1,10 +1,18 @@
 import requests
 import random
 
+
+user_agent = "jaysonc678@gmail.com"
+
+BASE_URL = "https://api.weather.gov"
+
+station_and_coords = ["EPZ",124,104]
+
+
 #needed to access api
-headers = {'User-Agent' : 'jaysonc678@gmail.com'}
+headers = {'User-Agent' : f'{user_agent}'}
 #link to data
-endpoint = 'https://api.weather.gov/gridpoints/EPZ/124,104/forecast'
+endpoint = f"{BASE_URL}/gridpoints/{station_and_coords[0]}/{station_and_coords[1]},{station_and_coords[2]}/forecast"
 
 #get info from api then get specifically the first period
 response = requests.get(endpoint, headers = headers)
@@ -21,8 +29,14 @@ else:
 
 print(f"It is {weather} outside")
 
-#open activities file based on forecast, choose random activity from there and print it
-with open("WeatherActivities/" + weather.lower() + ".txt", 'r') as f:
-    activities = f.read().split('\n')
+try:
+    #open activities file based on forecast, choose random activity from there and print it
+    with open("WeatherActivities/" + weather.lower() + ".txt", 'r') as f:
+        activities = f.read().split('\n')
+    #if there isnt a file for the forecast use default weather file
+except FileNotFoundError:
+    print("No specific activity found, defaulting to all weather activites")
+    with open("WeatherBot/WeatherActivites/allweather.txt", 'r') as f:
+        activities = f.read().split('\n')
 
-    print(f"An activity you can do in this weather is {random.choice(activities)}.")
+print(f"An activity you can do in this weather is {random.choice(activities)}.")
