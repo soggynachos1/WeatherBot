@@ -34,19 +34,6 @@ forecast_data = get_data_as_json(forecast_endpoint, headers)["properties"]["peri
 #save the forecast in lowercase
 weather = forecast_data["shortForecast"].lower()
 
-#just for testing can be deleted
-#----------------------------------------
-print(f"It is {weather} outside")
+def get_weather():
+    return weather
 
-
-try:
-    #open activities file based on forecast, choose random activity from there and print it
-    with open(f"WeatherBot/WeatherActivities/{weather.lower()}.txt", 'r') as f:
-        activities = f.read().split('\n')
-    #if there isnt a file for the forecast use default weather file
-except FileNotFoundError:
-    print("No specific activity found, defaulting to all weather activites")
-    with open("WeatherBot/WeatherActivites/allweather.txt", 'r') as f:
-        activities = f.read().split('\n')
-
-print(f"An activity you can do in this weather is {random.choice(activities)}.")
