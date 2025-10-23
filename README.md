@@ -1,2 +1,2 @@
 # WeatherBot
-WeatherBot is an task planning that suggests tasks based on the current weather
+WeatherBot is a task planning that suggests tasks based on the current weather
