@@ -24,10 +24,9 @@ try:
 except Exception:
     msg.set("Weather unavailable")
 
-root.mainloop() #RUNS PROGRAM
-# ...existing code...
- 
-          #DEFINES SETTINGS WINDOW
+
+
+#DEFINES SETTINGS WINDOW
  
 def open_settings():
     w = tk.Toplevel(root); w.title("Settings"); w.resizable(False, False)
@@ -79,6 +78,25 @@ btn = tk.Button(root, image=img, bd=0, relief="flat", highlightthickness=0,
 btn.place(relx=1.0, rely=1.0, x=-10, y=-10, anchor="se")
  
  
+def todo_list_button():
+    todo_button = tk.Button(root,text='To do list',command=todo_list_window, bg="#333", fg="white", bd=1).pack()
+    print(todo_button)
+    
+def todo_list_window():
+    todo_window = tk.Toplevel()
+    todo_window.title("TO DO List")
+    todo_window.geometry("400x500")   
+    
+    
+    
+
+
+
+todo_list_button() 
+
+
+
+
 root.mainloop() #RUNS PROGRAM
  
 
